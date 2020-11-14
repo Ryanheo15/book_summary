@@ -63,31 +63,31 @@
   </nav>
 </header>
 
-<main class = "main-show">
-  <div class = "container pt-5 pb-5">
-
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4"><%= book.title %></h1>
-        <h5 class = "text-secondary"><%= book.author %></h5>
-        <p class="lead mt-4"><%= book.description %></p>
+<main id = "mainShow">
+  <div class = "container-custom pt-5 pb-5">
+    <!-- Heading -->
+    <div class = "row">
+      <div class = "col-md-6">
+        <h1 class="display-4"><%= book.title %> by <%= book.author %> </h1>
+        <h4 class = "mb-4 text-secondary">Submitted by: <%= book.user.username %></h4>
       </div>
     </div>
 
     <div class = "row">
-      <div class = "col-md-6">
-        <h4 class = "mb-4">Submitted by: <%= book.user.username %></h4>
-        <img class = "img-fluid" src = "<%= book.image %>" style = "height: 600px;"/>
+      <div class = "col">
+        <h5><b>One liner summary: </b><%= book.description %></h5>
+      </div>
+    </div>
+
+    <div class = "row mt-5">
+      <div class = "col-md-4">
+        <img class = "img-fluid book_img" src = "data:image;base64,<%=book.image.toString('base64')%>" style = "height: 600px;"/>
       </div>
 
-      <div class = "col-md-6">
-        <% if (user && book.user.id.equals(user.id)){ %>
-        <form action = "/books/<%= book._id %>?_method=DELETE" method = "POST">
-            <button class = "btn btn-danger float-right" type = "submit">Delete</button>
-        </form>
-        <% } %>
-        <ul class = "mt-5">
-          <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+      <div class = "col-md-8 pl-5">
+        <ul class = "">
+          <h4> Summary: </h4>
+          <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit</li>
           <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
           <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>

@@ -44,11 +44,6 @@ router.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-router.get("/messages", (req, res) => {
-  res.render("messages.ejs");
-});
-
-
 
 router.get("*", (req, res) => {
   res.send("Error page");

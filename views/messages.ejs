@@ -68,15 +68,11 @@
     <div class = "row">
       <div class = "col-md-3">
           <h1 class = "test">Messages</h1>
-          <ul class="list-group">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-
-
+            <ul class="list-group">
+              <li class="list-group-item room">Room 1</li>
+              <li class="list-group-item room">Room 2</a></li>
+              <li class="list-group-item room">Room 3</a></li>
+            </ul>
       </div>
 
       <div class = "col-md-9">
@@ -85,7 +81,10 @@
           New user has joined!
         </div>
 
+        <!--
         <h4 class = "float-right" id = "userCount">User Count: 0</h4>
+        -->
+
         <form class = "messageForm">
           <div class = "form-group">
             <input class = "form-control message" placeholder = "Type message...">
@@ -98,6 +97,11 @@
             </button>
           </div>
         </form>
+
+        <div id = "messageContent">
+          <p><b class = "text-primary">John:</b> Hello this is a message</p>
+          <p><b class = "text-danger">Patrick:</b> Hello this is a message</p>
+        </div>
       </div>
     </div>
   </div>

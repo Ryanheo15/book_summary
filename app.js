@@ -9,6 +9,7 @@ let methodOverride = require("method-override");
 let validator = require("validator");
 let http = require("http");
 let socketio = require("socket.io");
+let multer = require("multer");
 
 //passport require
 let passport = require("passport");
@@ -19,6 +20,7 @@ let expressSession = require("express-session");
 //routes
 let bookRoute = require("./routes/books.js");
 let commentRoute = require("./routes/comments.js");
+let messageRoute = require("./routes/messageRoute.js");
 let indexRoute = require("./routes/index.js");
 
 //mongoose
@@ -51,29 +53,53 @@ passport.use(new localStrategy(userModel.authenticate()));
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
+//multer configuration
+
 //local variables
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
+//Global variables
+
+//JS files
+let userJs = require("./public/js/users.js");
 
 // ---------------- ROUTES ----------------------
 app.use(bookRoute);
 app.use(commentRoute);
+app.use(messageRoute);
 app.use(indexRoute);
 
-//Global variables
-let userCount = 0;
-
-//SOCKET IO
+// ---------------- SOCKET IO ----------------
 io.on("connection", (socket) => {
   //Emit events
-  userCount++;
-  io.emit("join", userCount);
 
   //On events
-  socket.on("message",(message) => {
+  socket.on("sendMessage",(message) => {
+    let id = socket.id;
+    let user = userJs.getUser(id);
+
     console.log(message);
+    console.log(user);
+
+  });
+
+  socket.on("join", (room) => {
+    let id = socket.id;
+    let user = userJs.addUser(room, id);
+
+    socket.join(room);
+
+    io.to(room).emit("newUser", "New user has joined room " + room );
+  });
+
+  socket.on("disconnect", () => {
+    let id = socket.id;
+
+    let removedUser = userJs.deleteUser(id);
+
+    io.to(removedUser.room).emit("userLeft", "User has left room " + removedUser.room);
   });
 });
 

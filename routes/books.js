@@ -1,6 +1,32 @@
 //INIT
 let express = require("express");
 let router = express.Router();
+let multer = require("multer");
+let sharp = require("sharp");
+
+//Multer configuration
+const imgUpload = multer({
+  fileFilter(req, file, cb){
+      if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){
+        throw new Error("Not the correct image type");
+      }
+      else {
+        //passes in undefined error and a true meaning it acepts file
+        cb(undefined, true);
+      }
+  }
+});
+
+const fileUpload = multer({
+  fileFilter(req,file, cb){
+    if(!file.originalname.match(/\.(pdf|doc|docx|xls|xlsx|txt)$/)){
+      throw new Errow("Not the correct file type");
+    }
+    else {
+      cb(undefined, true);
+    }
+  }
+});
 
 //MODELS
 let bookModel = require("../models/bookModel.js");
@@ -27,16 +53,18 @@ router.get("/books/new", middlewareObj.isLoggedIn, (req, res) => {
 });
 
 //posting books data
-router.post("/books", middlewareObj.isLoggedIn, (req, res) => {
+router.post("/books", middlewareObj.isLoggedIn, imgUpload.single("image"), fileUpload.single("file"), async (req, res) => {
   let user = {
     id: req.user.id,
     username: req.user.username
   };
 
+  let bookImage = req.file.buffer;
+
   bookModel.create({
     title: req.body.title,
     author: req.body.author,
-    image: req.body.image,
+    image: bookImage,
     description: req.body.description,
     user: user
   }, (err,book) => {

@@ -10,8 +10,10 @@ let bookSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    type: String,
-    default: "https://static01.nyt.com/images/2019/12/17/books/review/17fatbooks/17fatbooks-superJumbo.jpg"
+    type: Buffer
+  },
+  file: {
+    type: Buffer
   },
   description: {
     type: String,
@@ -24,6 +26,7 @@ let bookSchema = new mongoose.Schema({
     },
     username: String
   },
+  tags: [String],
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment"

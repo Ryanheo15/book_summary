@@ -60,10 +60,10 @@
 </header>
 
 
-</main>
+<main id = "bookMain">
   <div class = "container pt-5">
     <div class = "group">
-      <span class = "display-4">Books</span>
+      <span class = "display-4">Book Library</span>
 
       <a class = "btn btn-outline-dark d-inline float-right mt-4 new_sum_btn" href = "/books/new">New Summary</a>
     </div>
@@ -72,7 +72,7 @@
       <% for(let i = 0; i < books.length; i++) { %>
         <div class = "col-md-4">
           <div class="card">
-            <img class="card-img-top" alt="card image" src = "<%= books[i].image %>">
+            <img class="card-img-top book_img" alt="card image" src = "data:image;base64,<%=books[i].image.toString('base64')%>">
             <div class="card-body">
               <h5 class="card-title"><%= books[i].title %></h5>
               <h7 class = "text-secondary"><%= books[i].author %></h7>
