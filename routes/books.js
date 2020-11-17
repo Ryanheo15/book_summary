@@ -5,28 +5,20 @@ let multer = require("multer");
 let sharp = require("sharp");
 
 //Multer configuration
-const imgUpload = multer({
+const upload = multer({
   fileFilter(req, file, cb){
-      if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){
-        throw new Error("Not the correct image type");
+      if(file.originalname.match(/\.(jpg|jpeg|png)$/)){
+        cb(undefined, true);
+      }
+      else if(file.originalname.match(/\.(pdf|doc|docx|xls|xlsx|txt)$/)){
+        cb(undefined, true);
       }
       else {
-        //passes in undefined error and a true meaning it acepts file
-        cb(undefined, true);
+        throw new Error("Not the correct type");
       }
   }
 });
 
-const fileUpload = multer({
-  fileFilter(req,file, cb){
-    if(!file.originalname.match(/\.(pdf|doc|docx|xls|xlsx|txt)$/)){
-      throw new Errow("Not the correct file type");
-    }
-    else {
-      cb(undefined, true);
-    }
-  }
-});
 
 //MODELS
 let bookModel = require("../models/bookModel.js");
@@ -53,7 +45,8 @@ router.get("/books/new", middlewareObj.isLoggedIn, (req, res) => {
 });
 
 //posting books data
-router.post("/books", middlewareObj.isLoggedIn, imgUpload.single("image"), fileUpload.single("file"), async (req, res) => {
+let uploadMiddleware = upload.fields([{name: "image", maxCount: 1},{name : "file", maxCount: 1}]);
+router.post("/books", middlewareObj.isLoggedIn, uploadMiddleware, async (req, res) => {
   let user = {
     id: req.user.id,
     username: req.user.username

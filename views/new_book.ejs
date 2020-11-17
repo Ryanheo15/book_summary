@@ -52,7 +52,7 @@
 </main>
   <div class = "container pt-5">
     <h1>New Book</h1>
-    <form action = "/books" method = "POST" class = "mt-4" enctype="multipart/form-data">
+    <form  id = "bookForm" action = "/books" method = "POST" class = "mt-4" enctype="multipart/form-data">
       <div class = "form-group">
         <input class = "form-control" placeholder = "Title" name = "title"></input>
       </div>
@@ -75,20 +75,20 @@
 
         <div class="input-group mt-3">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" accept="image/*" name = "image">
-            <label class="custom-file-label" for="inputGroupFile01">Upload Image</label>
+            <input type="file" class="custom-file-input" accept="image/*" name = "image" id = 'bookImgFile'>
+            <label class="custom-file-label" for="inputGroupFile01" id = "imgLabel" >Upload Image</label>
           </div>
         </div>
 
         <div class="input-group mt-3">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name = "file" accept = ".pdf,.doc,.docx,.txt">
-            <label class="custom-file-label">Upload File</label>
+            <input type="file" class="custom-file-input" name = "file" accept = ".pdf,.doc,.docx,.txt" id = "bookFile">
+            <label class="custom-file-label" id = "fileLabel">Upload File</label>
           </div>
         </div>
 
       <div class = "form-group mt-3">
-        <textarea class = "form-control" placeholder = "Description" name = "description" rows = "summary"></textarea>
+        <textarea class = "form-control" placeholder = "Description" name = "description" rows = "summary" ></textarea>
       </div>
 
       <div class = "form-group">
@@ -108,5 +108,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script src = "../js/formValidation.js"></script>
 </body>
 </html>
