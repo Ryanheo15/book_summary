@@ -22,7 +22,7 @@
 <body>
 
 <header>
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg" style="background-color: #000000 !important;">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class = "container">
       <a class="navbar-brand" href="#">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= books[i].title %></h5>
               <h7 class = "text-secondary"><%= books[i].author %></h7>
-              <p class="card-text"><%= books[i].description %></p>
+              <p class="card-text bookNotesContent"><%= books[i].oneLiner %></p>
               <a href="/books/<%= books[i]._id %>" class="">View More >>></a>
             </div>
           </div>
@@ -95,5 +95,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src = "../js/notesDisplay.js"></script>
 </body>
 </html>

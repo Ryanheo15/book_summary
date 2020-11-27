@@ -6,6 +6,7 @@ let sharp = require("sharp");
 
 //Multer configuration
 const upload = multer({
+  //dest: 'uploads/',
   fileFilter(req, file, cb){
       if(file.originalname.match(/\.(jpg|jpeg|png)$/)){
         cb(undefined, true);
@@ -46,18 +47,38 @@ router.get("/books/new", middlewareObj.isLoggedIn, (req, res) => {
 
 //posting books data
 let uploadMiddleware = upload.fields([{name: "image", maxCount: 1},{name : "file", maxCount: 1}]);
+
 router.post("/books", middlewareObj.isLoggedIn, uploadMiddleware, async (req, res) => {
   let user = {
     id: req.user.id,
     username: req.user.username
   };
 
-  let bookImage = req.file.buffer;
+  let bookImage;
+  let bookFile;
+  if(req.files.image){
+    bookImage = req.files.image[0].buffer;
+  }
 
+  if(req.files.file){
+    bookFile = req.files.file[0].buffer;
+  }
+  /*
+  //CLEAN up paths and how they shoud be stored
+  let bookImagePath = req.files.image[0].path;
+  let bookFilePath = req.files.file[0].path;
+  */
+  console.log(bookImage);
   bookModel.create({
     title: req.body.title,
     author: req.body.author,
+    oneLiner: req.body.oneLiner,
     image: bookImage,
+    file: bookFile,
+    /*
+    imgPath: bookImagePath,
+    filePath: bookFilePath,
+    */
     description: req.body.description,
     user: user
   }, (err,book) => {

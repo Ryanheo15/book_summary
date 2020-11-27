@@ -9,11 +9,21 @@ let bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  oneLiner: {
+    type:String,
+    required: true
+  },
   image: {
-    type: Buffer
+    type:Buffer
+  },
+  imagePath: {
+    type: String
   },
   file: {
     type: Buffer
+  },
+  filePath: {
+    type: String
   },
   description: {
     type: String,
