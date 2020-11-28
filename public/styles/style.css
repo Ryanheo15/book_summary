@@ -45,15 +45,18 @@
 }
 
 /* REGISTER */
-#register {
-  background-color: var(--main-color);
+
+#register .library {
+  width:100%;
+  height: 93vh;
 }
 
-#register #register_cont {
-  background-color: #ffffff !important;
-  border-radius:5%;
-}
+/* LOGIN */
+#login .library {
+  width:100%;
+  height:93vh;
 
+}
 /* BOOKS PAGE */
 #bookMain .new_sum_btn:hover {
   color:white !important;
