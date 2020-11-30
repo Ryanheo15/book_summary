@@ -19,7 +19,7 @@
     <title>Book Summaries</title>
 </head>
 
-<body>
+<body >
 
   <header>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -57,17 +57,20 @@
   </header>
 
 
-<main id = "bookMain">
-  <div class = "container pt-5">
+<main id = "bookMain" class = "pb-5">
+
+  <div class = "container-custom-80 pt-5">
+    <div class = "jumbotron book_header" >
+    </div>
     <div class = "group">
       <span class = "display-4">Book Library</span>
 
       <a class = "btn btn-outline-dark d-inline float-right mt-4 new_sum_btn" href = "/books/new">New Summary</a>
     </div>
 
-    <div class = "row mt-5">
+    <div class = "row">
       <% for(let i = 0; i < books.length; i++) { %>
-        <div class = "col-md-4">
+        <div class = "col-md-4 mt-5">
           <div class="card">
             <img class="card-img-top book_img" alt="card image" src = "data:image;base64,<%=books[i].image.toString('base64')%>">
             <div class="card-body">

@@ -13,9 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <link rel = "stylesheet" href = "./styles/style.css">
-
     <!-- TINY MCE -->
     <script src="https://cdn.tiny.cloud/1/xjeyfrstdb7vmsu24ro8rslb8gw2bhvnejkph90p8wpjfipq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -30,13 +27,15 @@
       });
     </script>
 
+    <!-- Custom CSS -->
+    <link rel = "stylesheet" href = "../styles/style.css">
 
     <title>Book Notes App</title>
 </head>
 
 <body>
 
-  <header>
+  <header id = "new_book_header">
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
       <div class = "container">
         <a class="navbar-brand" href="/">BookNotes</a>
@@ -72,7 +71,7 @@
   </header>
 
 
-</main>
+<main>
   <div class = "container pt-5 pb-5">
     <h1>New Book</h1>
     <form  id = "bookForm" action = "/books" method = "POST" class = "mt-4" enctype="multipart/form-data">
