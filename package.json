@@ -7,7 +7,7 @@
   "description": "Simple application to share summaries of books that users have read ",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ryan Heo",
