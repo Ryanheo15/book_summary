@@ -2,6 +2,7 @@
 
 # Future Release plans 
 <ul>
+  <li> Fixing form (pdf, image upload,) - adding option to simply drag a link </li>
 <li>Add edit/delete routes on show book page </li>
 <li> Add error flash messages </li>
 <li> Add pdf file upload </li>
